@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title th:text="${title}">Student</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"></head>
+<body>
+<header>🎓 Student Management System</header>
+<main><div class="card" style="max-width:520px;margin:auto">
+  <h2 th:text="${title}"></h2>
+  <form th:action="@{/students/save}" th:object="${student}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <div class="form-row"><label>Name</label>
+      <input type="text" th:field="*{name}">
+      <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div></div>
+    <div class="form-row"><label>Email</label>
+      <input type="text" th:field="*{email}">
+      <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div></div>
+    <div class="form-row"><label>Course</label>
+      <input type="text" th:field="*{course}">
+      <div class="error" th:if="${#fields.hasErrors('course')}" th:errors="*{course}"></div></div>
+    <div class="form-row"><label>Semester</label>
+      <input type="number" th:field="*{semester}">
+      <div class="error" th:if="${#fields.hasErrors('semester')}" th:errors="*{semester}"></div></div>
+    <button class="btn green" type="submit">Save</button>
+    <a class="btn gray" th:href="@{/students}">Cancel</a>
+  </form>
+</div></main>
+</body></html>

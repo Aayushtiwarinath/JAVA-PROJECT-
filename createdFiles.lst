@@ -1,0 +1,6 @@
+com/aayu/studentcrud/controller/HomeController.class
+com/aayu/studentcrud/model/Student.class
+com/aayu/studentcrud/repository/StudentRepository.class
+com/aayu/studentcrud/StudentCrudApplication.class
+com/aayu/studentcrud/service/StudentService.class
+com/aayu/studentcrud/controller/StudentController.class

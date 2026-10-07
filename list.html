@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Students</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"></head>
+<body>
+<header>🎓 Student Management System</header>
+<main><div class="card">
+  <div th:if="${msg}" class="flash" th:text="${msg}"></div>
+  <div class="bar">
+    <form th:action="@{/students}" method="get">
+      <input type="text" name="keyword" th:value="${keyword}" placeholder="Search name or course">
+      <button class="btn" type="submit">Search</button>
+      <a class="btn gray" th:href="@{/students}">Reset</a>
+    </form>
+    <a class="btn green" th:href="@{/students/new}">+ Add Student</a>
+  </div>
+  <table>
+    <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Course</th><th>Sem</th><th>Actions</th></tr></thead>
+    <tbody>
+      <tr th:each="s : ${students}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.name}"></td>
+        <td th:text="${s.email}"></td>
+        <td th:text="${s.course}"></td>
+        <td th:text="${s.semester}"></td>
+        <td>
+          <a class="btn sm" th:href="@{/students/edit/{id}(id=${s.id})}">Edit</a>
+          <form class="inline" th:action="@{/students/delete/{id}(id=${s.id})}" method="post"
+                onsubmit="return confirm('Delete this student?')">
+            <button class="btn sm red" type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      <tr th:if="${#lists.isEmpty(students)}"><td colspan="6" class="empty">No students found.</td></tr>
+    </tbody>
+  </table>
+</div></main>
+</body></html>
